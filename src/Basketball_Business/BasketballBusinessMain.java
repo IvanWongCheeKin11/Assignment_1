@@ -4,9 +4,10 @@ public class BasketballBusinessMain {
 
     public static void main(String[] args) {
 
-        System.out.println("Company Details");
+        System.out.println("<---Company Details--->\n");
         BasketballBusiness bb = new BasketballBusiness("Ivan Basketball Business Sdn.Bhd", "18 JALAN BASKETBALL 18,\nTAMAN SPORT,\n30010 IPOH,\nPERAK,\nMALAYSIA.", "+601126302064", "0900 - 0000", "Basketball");
 
+        System.out.println();
         System.out.println("Type Of Sport Basketball");
         TypeOfSportBasketball tb = new TypeOfSportBasketball();
 
@@ -16,11 +17,11 @@ public class BasketballBusinessMain {
 
         System.out.println();
         System.out.println("Employees B");
-        Employees eB = new Employees();
+        Employees eB = new Employees(2000);
 
         System.out.println();
         System.out.println("Employees C");
-        Employees eC = new Employees();
+        Employees eC = new Employees(2000,7);
 
         System.out.println();
         System.out.println("Customer A");
@@ -43,12 +44,16 @@ public class BasketballBusinessMain {
         BasketballCourt e3 = new BasketballCourt();
 
         System.out.println();
-        System.out.println("Financial Statement for the first half of the year");
-        Financial f1 = new Financial();
+        System.out.println("Financial Statement for the first quarter of the year");
+        Financial fa = new Financial();
 
         System.out.println();
-        System.out.println("Financial Statement for the second half of the year");
-        Financial f2 = new Financial();
+        System.out.println("Financial Statement for the second quarter of the year");
+        Financial fb = new Financial(54000);
+
+        System.out.println();
+        System.out.println("Financial Statement for the third quarter of the year");
+        Financial fc = new Financial(54000, 30000);
 
     }
 

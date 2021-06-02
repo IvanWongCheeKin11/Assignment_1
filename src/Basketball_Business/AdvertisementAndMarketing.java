@@ -13,17 +13,15 @@ public class AdvertisementAndMarketing {
     public void AdvertisementOptions(){
         System.out.println("Option: ");
         Options = input.nextInt();
-        switch(Options) {
-            case 1:
-                System.out.println("Method 1 :" );
+        switch (Options) {
+            case 1 -> {
+                System.out.println("Method 1 :");
                 method1();
-                break;
-
-            case 2:
-                System.out.println("Method 2 :" );
+            }
+            case 2 -> {
+                System.out.println("Method 2 :");
                 method2();
-                break;
-
+            }
         }
     }
     public String method1() {

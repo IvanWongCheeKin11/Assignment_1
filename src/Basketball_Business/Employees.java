@@ -2,134 +2,79 @@ package Basketball_Business;
 
 import java.util.Scanner;
 public class Employees {
-    private int ordinaryno, executiveno;
-    private String[] ordinaryname;
-    private String[] executivename;
-    private double[] ordinarysalary;
-    private double[] executivesalary;
-    private double totalordinarysalary, totalexecutivesalary, totalsalary;
+    private double numOfPayMonthlyEmployee, numOfPayHourlyEmployee, numOfHoursPayHourlyEmployeeWork, payMonthlyEmployeeSalary, payHourlyEmployeeSalary, totalPayMonthlyEmployeeSalary, totalPayHourlyEmployeeSalary, totalSalary;
 
 
     Scanner scan = new Scanner(System.in);
     Employees(){
-        System.out.print("Please enter the number of ordinary employee: ");
-        ordinaryno = scan.nextInt();
-        System.out.print("Please enter the number of executive employee: ");
-        executiveno = scan.nextInt();
-        ordinaryname = new String[ordinaryno];
-        ordinarysalary = new double[ordinaryno];
-        executivename = new String[executiveno];
-        executivesalary = new double[executiveno];
-        for(int i = 0; i < ordinaryname.length; i++) {
-            System.out.print("Please enter ordinary employee " + (i+1) + " name: ");
-            ordinaryname[i] = scan.next();scan.nextLine();
-            System.out.print("Please enter his/her salary: RM");
-            ordinarysalary[i] = scan.nextDouble();
-        }
-        for(int j = 0; j < executivename.length; j++) {
-            System.out.print("Please enter executive employee " + (j+1) + " name: ");
-            executivename[j] = scan.next();scan.nextLine();
-            System.out.print("Please enter his/her salary: RM");
-            executivesalary[j] = scan.nextDouble();
-        }
-        totalordinarysalary = calculateTotalOrdinarySalary(ordinarysalary);
-        totalexecutivesalary = calculateTotalExecutiveSalary(executivesalary);
-        totalsalary = calculateTotalSalary(totalordinarysalary, totalexecutivesalary);
-        printDetails(ordinaryno, executiveno, ordinaryname, executivename, ordinarysalary, executivesalary, totalordinarysalary, totalexecutivesalary, totalsalary);
+        System.out.print("Enter The Number Of Pay Monthly Employee: ");
+        numOfPayMonthlyEmployee = scan.nextDouble();
+        System.out.print("Enter Amount Of Pay Monthly Employee Salary: ");
+        payMonthlyEmployeeSalary = scan.nextDouble();
+        System.out.print("Enter The Number Of Pay Hourly Employee: ");
+        numOfPayHourlyEmployee = scan.nextDouble();
+        System.out.print("Enter The Number Of Hours Pay Hourly Employee Worked: ");
+        numOfHoursPayHourlyEmployeeWork = scan.nextDouble();
+        System.out.print("Enter Amount Of Pay Hourly Employee Salary: ");
+        payHourlyEmployeeSalary = scan.nextDouble();
+        totalPayMonthlyEmployeeSalary = calculateTotalPayMonthlyEmployeeSalary(numOfPayMonthlyEmployee,payMonthlyEmployeeSalary);
+        totalPayHourlyEmployeeSalary = calculateTotalPayHourlyEmployeeSalary(numOfPayHourlyEmployee, numOfHoursPayHourlyEmployeeWork, payHourlyEmployeeSalary);
+        totalSalary = calculateTotalSalary(totalPayMonthlyEmployeeSalary, totalPayHourlyEmployeeSalary);
+        printDetails(numOfPayMonthlyEmployee, numOfPayHourlyEmployee, numOfHoursPayHourlyEmployeeWork, payMonthlyEmployeeSalary, payHourlyEmployeeSalary, totalPayMonthlyEmployeeSalary, totalPayHourlyEmployeeSalary, totalSalary);
     }
 
-    Employees(int ordinaryno){
-        System.out.println("The number of ordinary employees: " + ordinaryno);
-        System.out.print("Please enter the number of executive employee: ");
-        executiveno = scan.nextInt();
-        ordinaryname = new String[ordinaryno];
-        ordinarysalary = new double[ordinaryno];
-        executivename = new String[executiveno];
-        executivesalary = new double[executiveno];
-        for(int i = 0; i < ordinaryname.length; i++) {
-            System.out.print("Please enter ordinary employee " + (i+1) + " name: ");
-            ordinaryname[i] = scan.next();scan.nextLine();
-            System.out.print("Please enter his/her salary: RM");
-            ordinarysalary[i] = scan.nextDouble();
-        }
-        for(int j = 0; j < executivename.length; j++) {
-            System.out.print("Please enter executive employee " + (j+1) + " name: ");
-            executivename[j] = scan.next();scan.nextLine();
-            System.out.print("Please enter his/her salary: RM");
-            executivesalary[j] = scan.nextDouble();
-        }
-        totalordinarysalary = calculateTotalOrdinarySalary(ordinarysalary);
-        totalexecutivesalary = calculateTotalExecutiveSalary(executivesalary);
-        totalsalary = calculateTotalSalary(totalordinarysalary, totalexecutivesalary);
-        printDetails(ordinaryno, executiveno, ordinaryname, executivename, ordinarysalary, executivesalary, totalordinarysalary, totalexecutivesalary, totalsalary);
+    Employees(double payMonthlyEmployeeSalary){
+        System.out.print("Enter The Number Of Pay Monthly Employee: ");
+        numOfPayMonthlyEmployee = scan.nextDouble();
+        System.out.print("Amount Of Pay Monthly Employee Salary: " + payMonthlyEmployeeSalary);
+        System.out.print("\nEnter The Number Of Pay Hourly Employee: ");
+        numOfPayHourlyEmployee = scan.nextDouble();
+        System.out.print("Enter The Number Of Hours Pay Hourly Employee Worked: ");
+        numOfHoursPayHourlyEmployeeWork = scan.nextDouble();
+        System.out.print("Enter Amount Of Pay Hourly Employee Salary: ");
+        payHourlyEmployeeSalary = scan.nextDouble();
+        totalPayMonthlyEmployeeSalary = calculateTotalPayMonthlyEmployeeSalary(numOfPayMonthlyEmployee,payMonthlyEmployeeSalary);
+        totalPayHourlyEmployeeSalary = calculateTotalPayHourlyEmployeeSalary(numOfPayHourlyEmployee, numOfHoursPayHourlyEmployeeWork, payHourlyEmployeeSalary);
+        totalSalary = calculateTotalSalary(totalPayMonthlyEmployeeSalary, totalPayHourlyEmployeeSalary);
+        printDetails(numOfPayMonthlyEmployee, numOfPayHourlyEmployee, numOfHoursPayHourlyEmployeeWork, payMonthlyEmployeeSalary, payHourlyEmployeeSalary, totalPayMonthlyEmployeeSalary, totalPayHourlyEmployeeSalary, totalSalary);
     }
 
-    Employees(int executiveno, String[] executivename){
-        System.out.print("Please enter the number of ordinary employee: ");
-        ordinaryno = scan.nextInt();
-        System.out.println("The number of executive employees: " + executiveno);
-        ordinaryname = new String[ordinaryno];
-        ordinarysalary = new double[ordinaryno];
-        executivesalary = new double[executiveno];
-        for(int i = 0; i < ordinaryname.length; i++) {
-            System.out.print("Please enter ordinary employee " + (i+1) + " name: ");
-            ordinaryname[i] = scan.next();scan.nextLine();
-            System.out.print("Please enter his/her salary: RM");
-            ordinarysalary[i] = scan.nextDouble();
-        }
-        for(int j = 0; j < executivename.length; j++) {
-            System.out.print("Please enter executive " + executivename[j] + "'s salary: RM");
-            executivesalary[j] = scan.nextDouble();
-        }
-        totalordinarysalary = calculateTotalOrdinarySalary(ordinarysalary);
-        totalexecutivesalary = calculateTotalExecutiveSalary(executivesalary);
-        totalsalary = calculateTotalSalary(totalordinarysalary, totalexecutivesalary);
-        printDetails(ordinaryno, executiveno, ordinaryname, executivename, ordinarysalary, executivesalary, totalordinarysalary, totalexecutivesalary, totalsalary);
+    Employees(double payMonthlyEmployeeSalary, double payHourlyEmployeeSalary){
+        System.out.print("Enter The Number Of Pay Monthly Employee: ");
+        numOfPayMonthlyEmployee = scan.nextDouble();
+        System.out.print("Amount Of Pay Monthly Employee Salary: " + payMonthlyEmployeeSalary);
+        System.out.print("\nEnter The Number Of Pay Hourly Employee: ");
+        numOfPayHourlyEmployee = scan.nextDouble();
+        System.out.print("Enter The Number Of Hours Pay Hourly Employee Worked: ");
+        numOfHoursPayHourlyEmployeeWork = scan.nextDouble();
+        System.out.print("Enter Amount Of Pay Hourly Employee Salary: " + payHourlyEmployeeSalary + "\n");
+        totalPayMonthlyEmployeeSalary = calculateTotalPayMonthlyEmployeeSalary(numOfPayMonthlyEmployee,payMonthlyEmployeeSalary);
+        totalPayHourlyEmployeeSalary = calculateTotalPayHourlyEmployeeSalary(numOfPayHourlyEmployee, numOfHoursPayHourlyEmployeeWork, payHourlyEmployeeSalary);
+        totalSalary = calculateTotalSalary(totalPayMonthlyEmployeeSalary, totalPayHourlyEmployeeSalary);
+        printDetails(numOfPayMonthlyEmployee, numOfPayHourlyEmployee, numOfHoursPayHourlyEmployeeWork, payMonthlyEmployeeSalary, payHourlyEmployeeSalary, totalPayMonthlyEmployeeSalary, totalPayHourlyEmployeeSalary, totalSalary);
     }
 
-    double calculateTotalOrdinarySalary(double[] ordinarysalary) {
-        double totalsalary = 0;
-        for (int i = 0; i < ordinarysalary.length; i++) {
-            totalsalary += ordinarysalary[i];
-        }
-        return totalsalary;
+    double calculateTotalPayMonthlyEmployeeSalary(double numOfPayMonthlyEmployee, double payMonthlyEmployeeSalary) {
+        return numOfPayMonthlyEmployee * payMonthlyEmployeeSalary;
     }
 
-    double calculateTotalExecutiveSalary(double[] executivesalary) {
-        double totalsalary = 0;
-        for (int i = 0; i < executivesalary.length; i++) {
-            totalsalary += executivesalary[i];
-        }
-        return totalsalary;
+    double calculateTotalPayHourlyEmployeeSalary(double numOfPayHourlyEmployee, double payHourlyEmployeeSalary, double numOfHoursPayHourlyEmployeeWork) {
+        return numOfPayHourlyEmployee * payHourlyEmployeeSalary * numOfHoursPayHourlyEmployeeWork;
     }
 
-    double calculateTotalSalary(double totalordinarysalary, double totalexecutivesalary) {
-        return totalordinarysalary + totalexecutivesalary;
+    double calculateTotalSalary(double totalPayMonthlyEmployeeSalary, double totalPayHourlyEmployeeSalary) {
+        return totalPayMonthlyEmployeeSalary + totalPayHourlyEmployeeSalary;
     }
 
-    void printDetails(int ordinaryno, int executiveno, String[] ordinaryname, String[] executivename, double[] ordinarysalary, double[] executivesalary,
-                      double totalordinarysalary, double totalexecutivesalary, double totalsalary) {
-        System.out.println();
-        System.out.println("Employees Details");
-        System.out.println();
-        System.out.println("Number of ordinary employee: " + ordinaryno);
-        for (int i = 0; i < ordinaryname.length; i++) {
-            System.out.println();
-            System.out.println("Employee " + (i+1));
-            System.out.println("Name: " + ordinaryname[i]);
-            System.out.printf("Salary: RM%.2f%n",ordinarysalary[i]);
-        }
-        System.out.println();
-        System.out.println("Number of executive employee: " + executiveno);
-        for (int j = 0; j < executivename.length; j++) {
-            System.out.println();
-            System.out.println("Executive " + (j+1));
-            System.out.println("Name: " + executivename[j]);
-            System.out.printf("Salary: RM%.2f%n",executivesalary[j]);
-        }
-        System.out.println();
-        System.out.printf("Total salary for ordinary employee: RM%.2f%n",totalordinarysalary);
-        System.out.printf("Total salary for executive employee: RM%.2f%n",totalexecutivesalary);
-        System.out.printf("Total salary for all employee: RM%.2f%n",totalsalary);
+    void printDetails(double numOfPayMonthlyEmployee, double numOfPayHourlyEmployee, double numOfHoursPayHourlyEmployeeWork, double payMonthlyEmployeeSalary, double payHourlyEmployeeSalary, double totalPayMonthlyEmployeeSalary, double totalPayHourlyEmployeeSalary, double totalSalary) {
+        System.out.println("\nEmployees Details\n");
+        System.out.println("Number Of Pay Monthly Employee: " + numOfPayMonthlyEmployee);
+        System.out.printf("Pay Monthly Employee Salary: RM%.2f%n",payMonthlyEmployeeSalary);
+        System.out.printf("Total Pay Monthly Employee Salary: RM%.2f%n",totalPayMonthlyEmployeeSalary);
+        System.out.println("Number Of Pay Hourly Employee: " + numOfPayHourlyEmployee);
+        System.out.println("Number Of Hours Pay Hourly EmployeeWork: " + numOfHoursPayHourlyEmployeeWork + "hours");
+        System.out.printf("Pay Hourly Employee Salary Per Hour: RM%.2f%n",payHourlyEmployeeSalary);
+        System.out.printf("Total Pay Hourly Employee Salary: RM%.2f%n",totalPayHourlyEmployeeSalary);
+        System.out.printf("Total Salary: RM%.2f%n",totalSalary);
     }
 }

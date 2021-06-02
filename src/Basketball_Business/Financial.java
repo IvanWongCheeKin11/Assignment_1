@@ -2,73 +2,57 @@ package Basketball_Business;
 
 import java.util.Scanner;
 public class Financial {
-    private double sales, costofgoods, operatingExpense, tax, grossProfit, operatingIncome, netIncome;
+    private double totalRevenue, totalExpense, tax, earnBeforeTax, netIncome;
 
-    Scanner scan = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
 
     Financial(){
-        System.out.print("Please enter this month's sales: RM");
-        sales = scan.nextDouble();
-        System.out.print("Please enter this month's cost of goods: RM");
-        costofgoods = scan.nextDouble();
-        System.out.print("Please enter this month's operating expenses: RM");
-        operatingExpense = scan.nextDouble();
-        System.out.print("Please enter this month's tax expenses: RM");
-        tax = scan.nextDouble();
-        grossProfit = calculateGrossProfit(sales, costofgoods);
-        operatingIncome = calculateOperatingIncome(grossProfit, operatingExpense);
-        netIncome = calculateNetIncome(operatingIncome, tax);
-        printDetails(sales, costofgoods, operatingExpense, tax, grossProfit, operatingIncome, netIncome);
+        System.out.print("Please Enter The Quarter Of The Year's Total Revenue: RM");
+        totalRevenue = sc.nextDouble();
+        System.out.print("Please Enter The Quarter Of The Year's Total Expense: RM");
+        totalExpense = sc.nextDouble();
+        System.out.print("Please Enter The Quarter Of The Year's Tax: RM");
+        tax = sc.nextDouble();
+        earnBeforeTax = calculateEarnBeforeTax(totalRevenue, totalExpense);
+        netIncome = calculateNetIncome(earnBeforeTax, tax);
+        printDetails(totalRevenue, totalExpense, tax, earnBeforeTax, netIncome);
     }
 
-    Financial(double sales){
-        System.out.printf("This month's sales: RM%.2f%n",sales);
-        System.out.print("Please enter this month's cost of goods: RM");
-        costofgoods = scan.nextDouble();
-        System.out.print("Please enter this month's operating expenses: RM");
-        operatingExpense = scan.nextDouble();
-        System.out.print("Please enter this month's tax expenses: RM");
-        tax = scan.nextDouble();
-        grossProfit = calculateGrossProfit(sales, costofgoods);
-        operatingIncome = calculateOperatingIncome(grossProfit, operatingExpense);
-        netIncome = calculateNetIncome(operatingIncome, tax);
-        printDetails(sales, costofgoods, operatingExpense, tax, grossProfit, operatingIncome, netIncome);
+    Financial(double totalRevenue){
+        System.out.print("The Quarter Of The Year's Total Revenue: RM" + totalRevenue + "\n");
+        System.out.print("Please Enter The Quarter Of The Year's Total Expense: RM");
+        totalExpense = sc.nextDouble();
+        System.out.print("Please Enter The Quarter Of The Year's Tax: RM");
+        tax = sc.nextDouble();
+        earnBeforeTax = calculateEarnBeforeTax(totalRevenue, totalExpense);
+        netIncome = calculateNetIncome(earnBeforeTax, tax);
+        printDetails(totalRevenue, totalExpense, tax, earnBeforeTax, netIncome);
     }
 
-    Financial(double sales, double costofgoods){
-        System.out.printf("This month's sales: RM%.2f%n",sales);
-        System.out.printf("This month's cost of goods: RM%.2f%n",costofgoods);
-        System.out.print("Please enter this month's operating expenses: RM");
-        operatingExpense = scan.nextDouble();
-        System.out.print("Please enter this month's tax expenses: RM");
-        tax = scan.nextDouble();
-        grossProfit = calculateGrossProfit(sales, costofgoods);
-        operatingIncome = calculateOperatingIncome(grossProfit, operatingExpense);
-        netIncome = calculateNetIncome(operatingIncome, tax);
-        printDetails(sales, costofgoods, operatingExpense, tax, grossProfit, operatingIncome, netIncome);
+    Financial(double totalRevenue, double totalExpense){
+        System.out.print("The Quarter Of The Year's Total Revenue: RM" + totalRevenue + "\n");
+        System.out.print("The Quarter Of The Year's Total Expense: RM" + totalExpense + "\n");
+        System.out.print("Please Enter The Quarter Of The Year's Tax: RM");
+        tax = sc.nextDouble();
+        earnBeforeTax = calculateEarnBeforeTax(totalRevenue, totalExpense);
+        netIncome = calculateNetIncome(earnBeforeTax, tax);
+        printDetails(totalRevenue, totalExpense, tax, earnBeforeTax, netIncome);
     }
 
-    double calculateGrossProfit(double sales, double costofgoods) {
-        return sales - costofgoods;
+    double calculateEarnBeforeTax(double totalRevenue, double totalExpense) {
+        return totalRevenue - totalExpense;
     }
 
-    double calculateOperatingIncome(double grossprofit, double operatingexpense) {
-        return grossprofit - operatingexpense;
+    double calculateNetIncome(double earnBeforeTax, double tax) {
+        return earnBeforeTax - tax;
     }
 
-    double calculateNetIncome(double operatingincome, double tax) {
-        return operatingincome - tax;
-    }
-
-    void printDetails(double sales, double costofgoods, double operatingexpense, double tax, double grossprofit, double operatingincome, double netincome) {	//Part 1.3 Method for user-defined class to print out the details of finance
-        System.out.println();
-        System.out.println("Financial Statement");
-        System.out.printf("Sales: RM%.2f%n",sales);
-        System.out.printf("Cost of goods: RM%.2f%n",costofgoods);
-        System.out.printf("Gross Profit: RM%.2f%n",grossprofit);
-        System.out.printf("Operating Expense: RM%.2f%n",operatingexpense);
-        System.out.printf("Operating Income: RM%.2f%n",operatingincome);
-        System.out.printf("Taxes expense: RM%.2f%n",tax);
-        System.out.printf("Net Income: RM%.2f%n",netincome);
+    void printDetails(double totalRevenue, double totalExpense, double tax, double earnBeforeTax, double netIncome) {
+        System.out.println("\nFinancial Statement\n");
+        System.out.printf("Total Expense: RM%.2f%n",totalRevenue);
+        System.out.printf("Total Income: RM%.2f%n",totalExpense);
+        System.out.printf("Earn Before Tax: RM%.2f%n",earnBeforeTax);
+        System.out.printf("Taxes Expense: RM%.2f%n",tax);
+        System.out.printf("Net Income: RM%.2f%n",netIncome);
     }
 }
